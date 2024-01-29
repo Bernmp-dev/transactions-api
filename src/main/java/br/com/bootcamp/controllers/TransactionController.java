@@ -68,4 +68,20 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseTransaction);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseDto<TransactionEntity>> deleteTransactionById(@PathVariable Long id) {
+        ResponseDto<TransactionEntity> transactionResponse = transactionService.deleteTransactionById(id);
+
+        if (transactionResponse.data() != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(transactionResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(transactionResponse);
+        }
+    }
+
+    @DeleteMapping
+    public void deleteAllTransactions() {
+        transactionService.deleteAllTransactions();
+    }
 }
