@@ -4,6 +4,7 @@ import br.com.bootcamp.models.dtos.ResponseDto;
 import br.com.bootcamp.models.entities.TransactionEntity;
 import br.com.bootcamp.models.repositories.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +46,21 @@ public class TransactionService {
         }
 
         return new ResponseDto<>("Not Found", null);
+    }
+
+    public ResponseDto<TransactionEntity> deleteTransactionById(Long id) {
+        Optional<TransactionEntity> transaction = transactionRepo.findById(id);
+
+        if (transaction.isPresent()) {
+            transactionRepo.delete(transaction.get());
+            return new ResponseDto<>("Transaction deleted successfully ", transaction.get());
+
+        }
+
+        return new ResponseDto<>("Not Found", null);
+    }
+
+    public void deleteAllTransactions() {
+        transactionRepo.deleteAll();
     }
 }
