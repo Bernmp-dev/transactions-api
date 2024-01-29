@@ -19,14 +19,14 @@ public class TransactionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Category não pode ser nulo ou vazio!")
+    @NotBlank(message = "Category cannot be null or empty!")
     private String category;
 
-    @NotNull(message = "Value não pode estar vazio!")
+    @NotNull(message = "Value cannot be empty!")
     private Double value;
 
-    @NotNull(message = "Data não pode ser nula!")
-    @PastOrPresent(message = "Data não pode ser no futuro!")
+    @NotNull(message = "Date cannot be null!")
+    @PastOrPresent(message = "Date cannot be in the future!")
     private LocalDate date;
 
     public TransactionEntity() {

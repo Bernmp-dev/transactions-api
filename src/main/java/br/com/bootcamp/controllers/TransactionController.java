@@ -1,5 +1,6 @@
 package br.com.bootcamp.controllers;
 
+import br.com.bootcamp.exceptions.TransactionNotFoundException;
 import br.com.bootcamp.models.dtos.ResponseDto;
 import br.com.bootcamp.models.entities.TransactionEntity;
 import br.com.bootcamp.services.TransactionService;
@@ -26,14 +27,12 @@ public class TransactionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getTransactionById(@PathVariable Long id) {
-        Optional<TransactionEntity> transaction = transactionService.getTransactionById(id);
+    @ResponseStatus(HttpStatus.OK)
+    public TransactionEntity getTransactionById(@PathVariable Long id) {
 
-        if (transaction.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
-        }
-
-        return ResponseEntity.status((HttpStatus.OK)).body(transaction.get());
+        return transactionService
+                .getTransactionById(id)
+                .orElseThrow(TransactionNotFoundException::new);
     }
 
     @PostMapping
@@ -45,13 +44,12 @@ public class TransactionController {
     }
 
     @PostMapping("/batch")
-    public ResponseEntity<List<TransactionEntity>> insertTransactionsBatch(
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<TransactionEntity> insertTransactionsBatch(
             @RequestBody List<TransactionEntity> transactionsBatch
     ) {
-        List<TransactionEntity> savedTransactions = transactionService
-                .insertTransactionsBatch(transactionsBatch);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedTransactions);
+        return transactionService.insertTransactionsBatch(transactionsBatch);
     }
 
     @PutMapping("/{id}")
@@ -81,6 +79,7 @@ public class TransactionController {
     }
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
     public void deleteAllTransactions() {
         transactionService.deleteAllTransactions();
     }
