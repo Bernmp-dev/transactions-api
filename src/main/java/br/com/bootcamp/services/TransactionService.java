@@ -1,10 +1,9 @@
 package br.com.bootcamp.services;
 
+import br.com.bootcamp.models.dtos.ResponseDto;
 import br.com.bootcamp.models.entities.TransactionEntity;
 import br.com.bootcamp.models.repositories.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +18,32 @@ public class TransactionService {
         return transactionRepo.findAll();
     }
 
+    public Optional<TransactionEntity> getTransactionById(Long id) {
+        return  transactionRepo.findById(id);
+    }
+
     public TransactionEntity insertTransaction(TransactionEntity transaction) {
         return transactionRepo.save(transaction);
     }
 
-    public ResponseEntity<?> getTransactionById(Long id) {
-        Optional<TransactionEntity> transaction = transactionRepo.findById(id);
+    public List<TransactionEntity> insertTransactionsBatch(
+            List<TransactionEntity> transactionsBatch
+    ) {
+        return transactionRepo.saveAll(transactionsBatch);
+    }
 
-        if (transaction.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
+    public ResponseDto<TransactionEntity> updateTransactionById(
+            Long id,
+            TransactionEntity transaction
+    ) {
+        boolean transactionExists = transactionRepo.existsById(id);
+
+        if (transactionExists) {
+            transaction.setId(id);
+            TransactionEntity updatedTransaction = transactionRepo.save(transaction);
+            return new ResponseDto<>("Transaction updated successfully", updatedTransaction);
         }
 
-        return ResponseEntity.status((HttpStatus.OK)).body(transaction);
+        return new ResponseDto<>("Not Found", null);
     }
 }
