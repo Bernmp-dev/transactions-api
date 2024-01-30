@@ -2,11 +2,12 @@ package br.com.bootcamp.services;
 
 import br.com.bootcamp.models.dtos.ResponseDto;
 import br.com.bootcamp.models.entities.TransactionEntity;
+import br.com.bootcamp.models.interfaces.CategorySumProjection;
 import br.com.bootcamp.models.repositories.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,5 +63,17 @@ public class TransactionService {
 
     public void deleteAllTransactions() {
         transactionRepo.deleteAll();
+    }
+
+    public CategorySumProjection getSumByCategory(String category) {
+        return transactionRepo.sumValuesByCategory(category);
+    }
+
+    public List<CategorySumProjection> getAllCategorySum() {
+        return transactionRepo.getAllCategorySum();
+    }
+
+    public List<TransactionEntity> getTransactionsByDate(LocalDate date) {
+        return transactionRepo.findAllByDate(date);
     }
 }
