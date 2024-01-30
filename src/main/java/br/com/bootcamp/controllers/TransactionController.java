@@ -92,25 +92,17 @@ public class TransactionController {
         transactionService.deleteAllTransactions();
     }
 
-    @GetMapping("/{category}/sum")
-    public CategorySumProjection getSumByCategory(@PathVariable String category) {
-        CategorySumProjection sum  = transactionService.getSumByCategory(category);
-
-        if (sum == null) {
-            throw new TransactionNotFoundException();
-        }
-
-        return sum;
-    }
-
     @GetMapping("/sum")
-    public List<CategorySumProjection> getAllCategorySum() {
-        List<CategorySumProjection> sum = transactionService.getAllCategorySum();
+    @ResponseStatus(HttpStatus.OK)
+    public List<CategorySumProjection> sumValuesByCategory(
+            @RequestParam(value = "category", required = false) String category
+    ) {
+        List<CategorySumProjection> sums = transactionService.sumValuesByCategory(category);
 
-        if (sum == null) {
+        if (sums.isEmpty()) {
             throw new TransactionNotFoundException();
         }
 
-        return  sum;
+        return sums;
     }
 }

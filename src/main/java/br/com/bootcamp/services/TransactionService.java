@@ -65,13 +65,14 @@ public class TransactionService {
         transactionRepo.deleteAll();
     }
 
-    public CategorySumProjection getSumByCategory(String category) {
-        return transactionRepo.sumValuesByCategory(category);
+    public List<CategorySumProjection> sumValuesByCategory(String category) {
+        if (category != null && !category.isBlank()) {
+            return List.of(transactionRepo.sumValuesByCategory(category));
+        }
+
+        return transactionRepo.sumValuesByCategory();
     }
 
-    public List<CategorySumProjection> getAllCategorySum() {
-        return transactionRepo.getAllCategorySum();
-    }
 
     public List<TransactionEntity> getTransactionsByDate(LocalDate date) {
         return transactionRepo.findAllByDate(date);

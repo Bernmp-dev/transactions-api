@@ -14,9 +14,9 @@ public interface TransactionRepo extends JpaRepository<TransactionEntity, Long> 
 
     List<TransactionEntity> findAllByDate(LocalDate date);
 
-    @Query("SELECT te.category AS category, SUM(te.value) AS sum FROM TransactionEntity te GROUP BY te.category")
-    List<CategorySumProjection> getAllCategorySum();
+    @Query("SELECT te.category AS category, SUM(te.value) AS totalValue FROM TransactionEntity te GROUP BY te.category")
+    List<CategorySumProjection> sumValuesByCategory();
 
-    @Query("SELECT te.category AS category, SUM(te.value) AS sum FROM TransactionEntity te WHERE te.category = :category GROUP BY te.category")
+    @Query("SELECT te.category AS category, SUM(te.value) AS totalValue FROM TransactionEntity te WHERE te.category = :category GROUP BY te.category")
     CategorySumProjection sumValuesByCategory(String category);
 }
