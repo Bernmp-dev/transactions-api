@@ -1,0 +1,334 @@
+_type: export
+__export_format: 4
+__export_date: 2024-01-30T03:14:19.782Z
+__export_source: insomnia.desktop.app:v8.6.0
+resources:
+  - _id: req_16f99e51f05e4bc69385e064123560ce
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706584164161
+    created: 1706576586688
+    url: localhost:8080/transaction?date=1995-03-11
+    name: GET BY DATE
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706576586688
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_be0235de57e6481fae59327df085ee13
+    parentId: null
+    modified: 1706533223681
+    created: 1706533201849
+    name: transactions-ibm.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_9e2addf175224e4aae9a880eafd77b96
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706579413655
+    created: 1706573091447
+    url: localhost:8080/transaction/sum?category=salario
+    name: SOMA POR CATEGORIA
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706573091447
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6a8f2b989fb241cb8921f17f65136f39
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706574500449
+    created: 1706574500449
+    url: localhost:8080/transaction/sum
+    name: SOMA TODAS CATEGORIA
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706570398763.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8abf2074b2234be393adda34cefdc4d1
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706568365892
+    created: 1706567706080
+    url: localhost:8080/transaction
+    name: DELETE ALL
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706567706080
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7ce652d302bb421a9871d7234436d64f
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706568338108
+    created: 1706568338108
+    url: localhost:8080/transaction/4
+    name: DELETE BY ID
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706563935081
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_92a2fdd6ae064387a60c0737c85d50c2
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706584214084
+    created: 1706560164082
+    url: localhost:8080/transaction/2
+    name: UPDATE TRANSACTION
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 2,
+        	"category": "reembolso",
+        	"value": 500.00,
+        	"date": "1995-11-03"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706560164082
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7c9e1d204adf4c788728fbedd651b43c
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706584250919
+    created: 1706553484198
+    url: localhost:8080/transaction
+    name: INSERT TRANSACTION
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"category": "reembolso",
+        	"value": 2000,
+        	"date": "2023-03-11"
+        },
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706553484198
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_54b4b1e8a4094e26a10e238f9ed77752
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706584327583
+    created: 1706565061466
+    url: localhost:8080/transaction/batch
+    name: INSERT TRANSACTION BATCH
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        [
+        	{
+        	"category": "salario",
+        	"value": 1000,
+        	"date": "2020-03-11"
+        	},
+        	{
+        	"category": "salario",
+        	"value": 1000,
+        	"date": "2020-03-11"
+        	},
+        	{
+        	"category": "salario",
+        	"value": 1000,
+        	"date": "2020-03-11"
+        	},
+        	{
+        	"category": "reembolso",
+        	"value": 200,
+        	"date": "2020-03-11"
+        	},
+        	{
+        	"category": "reembolso",
+        	"value": 200,
+        	"date": "2020-03-11"
+        	},
+        	{
+        	"category": "reembolso",
+        	"value": 200,
+        	"date": "2020-03-11"
+        	}
+        ]
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706543451226
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1429c12a88a8441abdd45cdc0729c600
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706577878298
+    created: 1706533418254
+    url: localhost:8080/transaction
+    name: GET ALL TRANSACTIONS
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706533418254
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9a2fdb4ed3854f2799e1f9982a5b142b
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706558558660
+    created: 1706558504189
+    url: localhost:8080/transaction/1
+    name: GET TRANSACTION BY ID
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/8.6.0
+    authentication: {}
+    metaSortKey: -1706298840783.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_fe6a0dc97fffa5ee94239a27f2879c955ae33796
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706533201853
+    created: 1706533201853
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1706533201853
+    _type: environment
+  - _id: jar_fe6a0dc97fffa5ee94239a27f2879c955ae33796
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706533201854
+    created: 1706533201854
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_f793f9f2c4bb41f7b592b7a74ccbd21f
+    parentId: wrk_be0235de57e6481fae59327df085ee13
+    modified: 1706533223680
+    created: 1706533201851
+    fileName: transactions-ibm.yaml
+    contents: ""
+    contentType: yaml
+    _type: api_spec
