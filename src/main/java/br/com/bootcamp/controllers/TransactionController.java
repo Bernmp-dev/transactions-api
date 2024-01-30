@@ -3,14 +3,16 @@ package br.com.bootcamp.controllers;
 import br.com.bootcamp.exceptions.TransactionNotFoundException;
 import br.com.bootcamp.models.dtos.ResponseDto;
 import br.com.bootcamp.models.entities.TransactionEntity;
+import br.com.bootcamp.models.interfaces.CategorySumProjection;
 import br.com.bootcamp.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -22,8 +24,14 @@ public class TransactionController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<TransactionEntity> getAllTransactions() {
-        return transactionService.getAllTransactions();
+    public List<TransactionEntity> getAllTransactionsOrByDate(
+            @RequestParam(value = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+    ) {
+        if (date != null) {
+            return transactionService.getTransactionsByDate(date);
+        } else {
+            return transactionService.getAllTransactions();
+        }
     }
 
     @GetMapping("/{id}")
@@ -82,5 +90,27 @@ public class TransactionController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteAllTransactions() {
         transactionService.deleteAllTransactions();
+    }
+
+    @GetMapping("/{category}/sum")
+    public CategorySumProjection getSumByCategory(@PathVariable String category) {
+        CategorySumProjection sum  = transactionService.getSumByCategory(category);
+
+        if (sum == null) {
+            throw new TransactionNotFoundException();
+        }
+
+        return sum;
+    }
+
+    @GetMapping("/sum")
+    public List<CategorySumProjection> getAllCategorySum() {
+        List<CategorySumProjection> sum = transactionService.getAllCategorySum();
+
+        if (sum == null) {
+            throw new TransactionNotFoundException();
+        }
+
+        return  sum;
     }
 }
