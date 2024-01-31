@@ -1,4 +1,4 @@
-# Documentação do Projeto Spring Boot
+# Documentação do Projeto Transactions-API
 
 # 1. Visão Geral
 
