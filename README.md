@@ -32,70 +32,99 @@ Clone o repositório e execute o projeto via Maven:
 mvn spring-boot:run
 ```
 
-## 5. API Endpoints
+## 4. API Endpoints
 
 Os endpoints da API incluem operações para listar, criar, atualizar e excluir transações, além de endpoints para agrupamento e filtragem.
 
 ### Transações
 
-- **Listar Todas as Transações**
-    - **GET** `/transaction`
-    - **Descrição**: Retorna uma lista de todas as transações.
+### Listar Todas as Transações
+- **Endpoint**: `GET /transaction`
+- **Descrição**: Retorna todas as transações cadastradas.
 
-- **Buscar Transação por ID**
-    - **GET** `/transaction/{id}`
-    - **Descrição**: Retorna os detalhes de uma transação específica.
-    - **Parâmetros**:
-        - `id`: ID da transação desejada.
 
-- **Criar Nova Transação**
-    - **POST** `/transaction`
-    - **Descrição**: Insere uma nova transação no sistema.
-    - **Corpo da Requisição**:
-      ```
-      {
-        "category": "Alimentação",
-        "value": 150.50,
-        "date": "2024-01-15"
-      }
-      ```
+### Buscar Transação por ID
+- **Endpoint**: `GET /transaction/{id}`
+- **Descrição**: Retorna detalhes de uma transação específica.
+- **Parâmetros de Path**:
+    - `id`: ID da transação.
 
-- **Atualizar Transação**
-    - **PUT** `/transaction/{id}`
-    - **Descrição**: Atualiza os dados de uma transação existente.
-    - **Parâmetros**:
-        - `id`: ID da transação a ser atualizada.
-    - **Corpo da Requisição**:
-      ```
-      {
-        "category": "Educação",
-        "value": 300.00,
-        "date": "2024-02-10"
-      }
-      ```
 
-- **Excluir Transação**
-    - **DELETE** `/transaction/{id}`
-    - **Descrição**: Remove uma transação do sistema.
-    - **Parâmetros**:
-        - `id`: ID da transação a ser excluída.
+### Inserir Transação
+- **Endpoint**: `POST /transaction`
+- **Descrição**: Insere uma nova transação.
+- **Corpo da Requisição**:
+  ```json
+  {
+    "category": "Exemplo Categoria",
+    "value": 100.00,
+    "date": "2024-01-01"
+  }
 
-### Agrupamentos e Filtros
+### Atualizar Transação
+- **Endpoint**: `PUT /transaction/{id}`
+- **Descrição**: Atualiza uma transação existente.
+- **Parâmetros de Path**:
+    - `id`: ID da transação.
+- **Corpo da Requisição**:
+  ```json
+  {
+    "category": "Nova Categoria",
+    "value": 150.00,
+    "date": "2024-01-02"
+  }
 
-- **Agrupar Transações por Categoria**
-    - **GET** `/transaction/sum`
-    - **Descrição**: Retorna a soma dos valores das transações agrupadas por categoria.
-- 
-    - **GET** `/transaction/sum?category={category}`
-    - **Descrição**: Retorna a soma dos valores das transações agrupadas por uma categoria específica.
 
-- **Filtrar Transações por Data**
-    - **GET** `/transaction?date={date}`
-    - **Descrição**: Lista transações realizadas em uma data específica.
-    - **Parâmetros de Consulta**:
-        - `date`: Data das transações no formato `YYYY-MM-DD`.
+### Excluir Transação
+- **Endpoint**: `DELETE /transaction/{id}`
+- **Descrição**: Remove uma transação específica.
+- **Parâmetros de Path**:
+    - `id`: ID da transação a ser removida.
 
-## 6. Tratamento de Erros
+
+### Excluir Todas as Transações
+- **Endpoint**: `DELETE /transaction`
+- **Descrição**: Remove todas as transações cadastradas.
+
+
+### Somar Valores por Categoria
+- **Endpoint**: `GET /transaction/sum?category={categoria}`
+- **Descrição**: Retorna a soma dos valores das transações para uma categoria específica.
+- **Parâmetros de Query**:
+    - `category`: Categoria das transações a serem somadas.
+
+
+### Somar Valores de Todas as Categorias
+- **Endpoint**: `GET /transaction/sum`
+- **Descrição**: Retorna a soma dos valores das transações para todas as categorias.
+
+
+### Buscar Transações por Data
+- **Endpoint**: `GET /transaction?date={data}`
+- **Descrição**: Retorna as transações realizadas em uma data específica.
+- **Parâmetros de Query**:
+    - `date`: Data das transações no formato `AAAA-MM-DD`.
+
+
+### Inserir Transações em Lote
+- **Endpoint**: `POST /transaction/batch`
+- **Descrição**: Insere um lote de transações.
+- **Corpo da Requisição**:
+  ```json
+  [
+    {
+      "category": "Categoria 1",
+      "value": 100.00,
+      "date": "2024-01-01"
+    },
+    {
+      "category": "Categoria 2",
+      "value": 200.00,
+      "date": "2024-01-02"
+    }
+  ]
+
+## 5. Tratamento de Erros
 
 O sistema utiliza `ExceptionController` para tratar exceções de forma uniforme e fornecer respostas de erro claras e informativas. Aqui estão alguns exemplos de como os erros são tratados:
 
@@ -106,7 +135,7 @@ O sistema utiliza `ExceptionController` para tratar exceções de forma uniforme
 - **Erro Genérico**: Para outras exceções não capturadas especificamente, o sistema pode retornar um erro 500, indicando um erro interno do servidor, juntamente com uma mensagem genérica.
 
 
-## 7. Documentação da API
+## 6. Documentação da API
 
 A documentação da API é gerada automaticamente pelo Springdoc OpenAPI, que é integrado ao projeto Spring Boot. Isso proporciona uma interface de usuário interativa para explorar todos os endpoints da API, seus parâmetros, corpos de requisição e respostas esperadas.
 
