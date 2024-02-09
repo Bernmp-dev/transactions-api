@@ -1,5 +1,8 @@
 # Documentação do Projeto Transactions-API
 
+### Deploy: [https://transactions-api.fly.dev/](https://transactions-api.fly.dev/)
+### Swagger-UI: [https://transactions-api.fly.dev/swagger-ui/index.html#/](https://transactions-api.fly.dev/swagger-ui/index.html#/)
+
 # 1. Visão Geral
 
 Este projeto é uma API Spring Boot desenvolvida para gerenciar transações financeiras. A API permite aos usuários criar, listar, atualizar e excluir transações, além de oferecer funcionalidades para agrupar transações por categoria e filtrar transações por datas específicas. O objetivo principal é fornecer uma solução simples e eficaz para o gerenciamento de transações financeiras, com foco em facilidade de uso e integração com outros sistemas ou interfaces de usuário.
