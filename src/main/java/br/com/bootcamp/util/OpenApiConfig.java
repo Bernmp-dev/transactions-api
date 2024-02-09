@@ -3,6 +3,7 @@ package br.com.bootcamp.util;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.servers.Server;
 
 @OpenAPIDefinition(
     info = @Info(
@@ -14,7 +15,8 @@ import io.swagger.v3.oas.annotations.info.Info;
       name = "Bernmp-dev",
       email = "bernardomp.dev@gmail.com",
       url = "https://github.com/Bernmp-dev"
-    ))
+    )),
+    servers = { @Server(url = "https://transactions-api.fly.dev") }
 )
 public class OpenApiConfig {
 }
